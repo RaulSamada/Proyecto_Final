@@ -21,6 +21,9 @@ public class Company {
 	public void addTienda(Tienda e){
 		this.tiendas.add(e);
 	}
+	public ArrayList<Tienda> getTienda (){
+		return this.tiendas; 
+	}
 	
 	//REPORTES
 	

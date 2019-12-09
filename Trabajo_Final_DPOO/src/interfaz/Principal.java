@@ -110,6 +110,7 @@ public class Principal extends JFrame implements ActionListener {
 		btnGestion.setBackground(SystemColor.textHighlight);
 		btnGestion.setFont(new Font("Roboto Black", Font.PLAIN, 14));
 		btnGestion.setBounds(0, 103, 244, 44);
+		btnGestion.addActionListener(this);
 		panelBotones.add(btnGestion);
 		
 		btnArmarPc = new JButton("Armar PC");
@@ -117,6 +118,7 @@ public class Principal extends JFrame implements ActionListener {
 		btnArmarPc.setBackground(SystemColor.textHighlight);
 		btnArmarPc.setFont(new Font("Roboto Black", Font.PLAIN, 14));
 		btnArmarPc.setBounds(0, 158, 244, 44);
+		btnArmarPc.addActionListener(this);
 		panelBotones.add(btnArmarPc);
 		
 		btnComprarComponenes = new JButton("Comprar Componenes\r\n");
@@ -124,6 +126,7 @@ public class Principal extends JFrame implements ActionListener {
 		btnComprarComponenes.setBackground(SystemColor.textHighlight);
 		btnComprarComponenes.setFont(new Font("Roboto Black", Font.PLAIN, 14));
 		btnComprarComponenes.setBounds(0, 213, 244, 44);
+		btnComprarComponenes.addActionListener(this);
 		panelBotones.add(btnComprarComponenes);
 		
 				
@@ -144,11 +147,11 @@ public class Principal extends JFrame implements ActionListener {
 		}else if(btnArmarPc == e.getSource()){
 			
 		}else if(btnComprarComponenes == e.getSource()){
-			
+			ventana = new ComprarComp();
+			titulo = "COMPRAR COMPONENTES";
+			cambiarContenido(ventana, titulo);
 		}
-		
-		
-		
+			
 	}
 	
 	private void cambiarContenido(JPanel ventana, String titulo){
