@@ -87,6 +87,6 @@ public class Tienda {
 	public String getDireccion(){return direccion;}
 	public String getTelefono(){return telefono;}
 	public Gerente getGerente(){return jefe;}
-	public ArrayLista<Trabajador> getPlantilla(){return plantilla;}
+	public ArrayList<Trabajador> getPlantilla(){return plantilla;}
 	
 }
