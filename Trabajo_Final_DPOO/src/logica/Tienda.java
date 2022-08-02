@@ -8,8 +8,8 @@ public class Tienda {
 	private String idComp;
 	private String direccion;					//pendiente hacer el set de esta funcion
 	private String telefono;
-	private Gerente jefe;						//Hacer la clase de Gerente
-	private	ArrayList<Trabajador> plantilla;	//Hacer la clase de Trabajador
+	private Gerente jefe;						
+	private	ArrayList<Trabajador> plantilla;	
 	private ArrayList<Producto>almacen;			
 	
 	public Tienda(String nombre,String idComp,String direccion,String telefono,Gerente jefe){
@@ -34,8 +34,8 @@ public class Tienda {
 		boolean llave = false;		
 		
 		try{
-			control = Long.parseLong(idComp);
 			llave = true;
+			control = Long.parseLong(idComp);
 		}		
 		catch(Exception e){
 			llave = false;
@@ -53,8 +53,9 @@ public class Tienda {
 		boolean llave = false;		
 		
 		try{
-			control = Long.parseLong(telefono);
+
 			llave = true;
+			control = Long.parseLong(telefono);
 		}		
 		catch(Exception e){
 			llave = false;

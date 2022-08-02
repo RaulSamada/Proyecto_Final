@@ -2,7 +2,7 @@ package logica;
 
 import excepciones.NoPriceException;
 import excepciones.NotLongEnoughException;
-import excepciones.NotValidIndexException;
+import excepciones.NotValidInputException;
 
 public class Trabajador {
 	private String nombre;
@@ -67,11 +67,11 @@ public class Trabajador {
 		}else
 			throw new NotLongEnoughException ("No el número de identidad debe tener 5 caracteres");
 	}
-	public void setGrado(String grado) throws NotValidIndexException {
+	public void setGrado(String grado) throws NotValidInputException {
 		if(grado.equalsIgnoreCase("Secundario") ||	grado.equalsIgnoreCase("Bachiller")	||	grado.equalsIgnoreCase("Superior") )
 			this.grado = grado;
 		else
-			throw new NotValidIndexException ("No es un grado válido");
+			throw new NotValidInputException ("No es un grado válido");
 	}
 	public void setSalario(double salario) throws NoPriceException {
 		if(salario > 0)
@@ -79,11 +79,11 @@ public class Trabajador {
 		else
 			throw new NoPriceException("El salario debe ser superior a cero");
 	}
-	public void setCargo(String cargo) throws NotValidIndexException {
+	public void setCargo(String cargo) throws NotValidInputException {
 		if(cargo.equalsIgnoreCase("almacenero") || cargo.equalsIgnoreCase("cajero") || cargo.equalsIgnoreCase("contador") || cargo.equalsIgnoreCase("gerente"))
 			this.cargo = cargo;
 		else
-			throw new NotValidIndexException("Cargo no válido");
+			throw new NotValidInputException("Cargo no válido");
 	}
 	
 	public String getNombre(){
