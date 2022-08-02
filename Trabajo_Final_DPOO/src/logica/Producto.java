@@ -6,6 +6,11 @@ public abstract class Producto {
 	private String modelo;
 	private double precio;
 	
+	public Producto(String marca, String modelo, double precio) throws Exception {
+		setMarca(marca);
+		setModelo(modelo);
+		setPrecio(precio);
+	}
 	
 	public void setMarca(String marca) throws NullPointerException{
 		if(marca != null && marca != "")
