@@ -89,5 +89,27 @@ public class Tienda {
 	public String getTelefono(){return telefono;}
 	public Gerente getGerente(){return jefe;}
 	public ArrayList<Trabajador> getPlantilla(){return plantilla;}
+	public ArrayList<Producto> getProducto(){return almacen;}
+	
+	//AYUDAS
+	public ArrayList<String> buscarMarca(String marca){
+		ArrayList<String> lista = new ArrayList<String>();
+		boolean control = false;
+		
+		for(Producto producto : almacen){
+			if(producto.getMarca().equalsIgnoreCase(marca)){
+				if(!control){
+					lista.add(getNombreTienda());
+					control = true;
+				}
+				lista.add(producto.getClass().getSimpleName());
+			}
+		}
+		
+		if(lista.size()>0)
+			return lista;
+		else
+			return null;
+	}
 	
 }
