@@ -49,12 +49,7 @@ public class Principal extends JFrame implements ActionListener {
 		setTitle("PRINCIPAL");
 		setType(Type.UTILITY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 950, 650);
-		PanelPrincipal = new JPanel();
-		PanelPrincipal.setBackground(Color.WHITE);
-		PanelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(PanelPrincipal);
-		PanelPrincipal.setLayout(null);
+		
 		
 		inicializarComponentes();
 		
@@ -62,6 +57,19 @@ public class Principal extends JFrame implements ActionListener {
 	}
 	
 	public void inicializarComponentes (){
+		
+		setBounds(100, 100, 950, 650);
+		PanelPrincipal = new JPanel();
+		PanelPrincipal.setBackground(Color.WHITE);
+		PanelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(PanelPrincipal);
+		PanelPrincipal.setLayout(null);
+		
+		panelVentanas = new JPanel();
+		panelVentanas.setBackground(Color.WHITE);
+		panelVentanas.setBounds(244, 0, 690, 611);
+		PanelPrincipal.add(panelVentanas);
+		panelVentanas.setLayout(null);
 		
 		panelBotones = new JPanel();
 		panelBotones.setBackground(SystemColor.textHighlight);
@@ -72,7 +80,7 @@ public class Principal extends JFrame implements ActionListener {
 		btnReportes = new JButton("Reportes");
 		btnReportes.setForeground(SystemColor.text);
 		btnReportes.setBackground(SystemColor.textHighlight);
-		btnReportes.setBounds(0, 48, 245, 44);
+		btnReportes.setBounds(0, 48, 244, 44);
 		btnReportes.setFont(new Font("Roboto Black", Font.PLAIN, 14));
 		btnReportes.addActionListener(this);
 		panelBotones.add(btnReportes);
@@ -81,27 +89,24 @@ public class Principal extends JFrame implements ActionListener {
 		btnGestion.setForeground(SystemColor.text);
 		btnGestion.setBackground(SystemColor.textHighlight);
 		btnGestion.setFont(new Font("Roboto Black", Font.PLAIN, 14));
-		btnGestion.setBounds(0, 103, 245, 44);
+		btnGestion.setBounds(0, 103, 244, 44);
 		panelBotones.add(btnGestion);
 		
 		btnArmarPc = new JButton("Armar PC");
 		btnArmarPc.setForeground(SystemColor.text);
 		btnArmarPc.setBackground(SystemColor.textHighlight);
 		btnArmarPc.setFont(new Font("Roboto Black", Font.PLAIN, 14));
-		btnArmarPc.setBounds(0, 158, 245, 44);
+		btnArmarPc.setBounds(0, 158, 244, 44);
 		panelBotones.add(btnArmarPc);
 		
 		btnComprarComponenes = new JButton("Comprar Componenes\r\n");
 		btnComprarComponenes.setForeground(SystemColor.text);
 		btnComprarComponenes.setBackground(SystemColor.textHighlight);
 		btnComprarComponenes.setFont(new Font("Roboto Black", Font.PLAIN, 14));
-		btnComprarComponenes.setBounds(0, 213, 245, 44);
+		btnComprarComponenes.setBounds(0, 213, 244, 44);
 		panelBotones.add(btnComprarComponenes);
 		
-		panelVentanas = new JPanel();
-		panelVentanas.setBackground(Color.WHITE);
-		panelVentanas.setBounds(244, 0, 690, 611);
-		PanelPrincipal.add(panelVentanas);
+		
 		
 	}
 
@@ -132,6 +137,4 @@ public class Principal extends JFrame implements ActionListener {
 		panelVentanas.revalidate();
 		panelVentanas.repaint();
 	}
-	
-	
 }
