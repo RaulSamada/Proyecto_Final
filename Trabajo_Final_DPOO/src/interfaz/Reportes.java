@@ -2,42 +2,78 @@ package interfaz;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
 import java.awt.SystemColor;
 import java.awt.Color;
+
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class Reportes extends JPanel  {
+public class Reportes extends JPanel implements ActionListener {
 
 	private JPanel panel;
+	///REPORTE 1///
+	
 	private JPanel panelReporte1;
-	private JPanel panelReporte2;
-	private JPanel panelReporte3;
-	private JPanel panelReporte4;
 	private JLabel lblReporte1;
-	private JTextField textField1;
-	private JTextField textField2;
+	private JTextField textFieldR1;
+	private JButton btnRep1;
+	private JLabel lblSalida1;
+	private JLabel lblSalidaRep1;	
+	
+	///REPORTE 2///
+	
+	private JPanel panelReporte2;
+	private JLabel lblReporte2;
+	private JTextField textFieldR2;
+	private JButton btnRep2;
+	private JLabel lblSalida2;
+	private JLabel lblTienda;
+	private JLabel lblSalidaTRep2;
+	private JLabel lblDesde;
+	private JLabel lblSalidaFRep2;	
+	
+	///REPORTE 3///
+	
+	private JPanel panelReporte3;
+	private JTextField textFieldR3;
+	private JButton btnRep3;
+	
+	///REPORTE 4///	
+	
+	private JPanel panelReporte4;	
+	private JLabel lblReporte3;
+	private JLabel lblReporte4;	
+	private JTextField textFieldR4;	
+	private JButton btnRep4;	
 	
 	/**
 	 * Create the panel.
 	 */
+	
 	public Reportes() {
 		setBackground(SystemColor.text);
-		setLayout(null);
 		
 		inicializarComponentes();
 
 	}
 	
 	private void inicializarComponentes(){
+		setLayout(null);
 		
 		panel = new JPanel();
+		panel.setBounds(10, 11, 670, 444);
 		panel.setBackground(Color.WHITE);
-		panel.setBounds(10, 11, 670, 589);
 		add(panel);
 		panel.setLayout(null);
+		
+		//////////////////REPORTE 1///////////////////////
 		
 		panelReporte1 = new JPanel();
 		panelReporte1.setBounds(0, 9, 670, 134);
@@ -50,14 +86,14 @@ public class Reportes extends JPanel  {
 		lblReporte1.setBounds(10, 30, 305, 25);
 		panelReporte1.add(lblReporte1);
 		
-		textField1 = new JTextField();
-		textField1.setFont(new Font("Roboto Black", Font.PLAIN, 13));
-		textField1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField1.setBounds(10, 66, 305, 33);
-		panelReporte1.add(textField1);
-		textField1.setColumns(10);
+		textFieldR1 = new JTextField();
+		textFieldR1.setFont(new Font("Roboto Black", Font.PLAIN, 13));
+		textFieldR1.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldR1.setBounds(10, 66, 305, 33);
+		panelReporte1.add(textFieldR1);
+		textFieldR1.setColumns(10);
 		
-		JButton btnRep1 = new JButton("Buscar");
+		btnRep1 = new JButton("Buscar");
 		btnRep1.setEnabled(false);
 		btnRep1.setForeground(SystemColor.text);
 		btnRep1.setFont(new Font("Roboto Black", Font.PLAIN, 13));
@@ -65,37 +101,39 @@ public class Reportes extends JPanel  {
 		btnRep1.setBounds(325, 66, 89, 33);
 		panelReporte1.add(btnRep1);
 		
-		JLabel lblSalida1 = new JLabel("La tienda con mayor abasto es:");
+		lblSalida1 = new JLabel("La tienda con mayor abasto es:");
 		lblSalida1.setFont(new Font("Roboto Black", Font.PLAIN, 14));
 		lblSalida1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalida1.setBounds(422, 30, 238, 25);
 		panelReporte1.add(lblSalida1);
 		
-		JLabel lblSalidaRep1 = new JLabel("");
+		lblSalidaRep1 = new JLabel("");
 		lblSalidaRep1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalidaRep1.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		lblSalidaRep1.setBounds(422, 66, 238, 33);
 		panelReporte1.add(lblSalidaRep1);
+		
+		//////////////////REPORTE 2///////////////////////
 		
 		panelReporte2 = new JPanel();
 		panelReporte2.setBounds(0, 154, 670, 134);
 		panel.add(panelReporte2);
 		panelReporte2.setLayout(null);
 		
-		JLabel lblReporte2 = new JLabel("Ingrese el nombre del Gerente");
+		lblReporte2 = new JLabel("Ingrese el nombre del Gerente");
 		lblReporte2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblReporte2.setFont(new Font("Roboto Black", Font.BOLD, 14));
 		lblReporte2.setBounds(10, 30, 305, 25);
 		panelReporte2.add(lblReporte2);
 		
-		textField2 = new JTextField();
-		textField2.setFont(new Font("Roboto Black", Font.PLAIN, 13));
-		textField2.setHorizontalAlignment(SwingConstants.CENTER);
-		textField2.setColumns(10);
-		textField2.setBounds(10, 66, 305, 33);
-		panelReporte2.add(textField2);
+		textFieldR2 = new JTextField();
+		textFieldR2.setFont(new Font("Roboto Black", Font.PLAIN, 13));
+		textFieldR2.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldR2.setColumns(10);
+		textFieldR2.setBounds(10, 66, 305, 33);
+		panelReporte2.add(textFieldR2);
 		
-		JButton btnRep2 = new JButton("Buscar");
+		btnRep2 = new JButton("Buscar");
 		btnRep2.setForeground(SystemColor.text);
 		btnRep2.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		btnRep2.setEnabled(false);
@@ -103,45 +141,95 @@ public class Reportes extends JPanel  {
 		btnRep2.setBounds(325, 66, 89, 33);
 		panelReporte2.add(btnRep2);
 		
-		JLabel lblSalida2 = new JLabel("Informaci\u00F3n del Gerente:");
+		lblSalida2 = new JLabel("Informaci\u00F3n del Gerente:");
 		lblSalida2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalida2.setFont(new Font("Roboto Black", Font.PLAIN, 14));
 		lblSalida2.setBounds(422, 30, 238, 25);
 		panelReporte2.add(lblSalida2);
 		
-		JLabel lblTienda = new JLabel("Tienda:");
+		lblTienda = new JLabel("Tienda:");
 		lblTienda.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTienda.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		lblTienda.setBounds(432, 66, 46, 14);
 		panelReporte2.add(lblTienda);
 		
-		JLabel lblSalidaTRep2 = new JLabel("");
+		lblSalidaTRep2 = new JLabel("");
 		lblSalidaTRep2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalidaTRep2.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		lblSalidaTRep2.setBounds(488, 66, 172, 14);
 		panelReporte2.add(lblSalidaTRep2);
 		
-		JLabel lblDesde = new JLabel("Desde:");
+		lblDesde = new JLabel("Desde:");
 		lblDesde.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDesde.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		lblDesde.setBounds(432, 85, 46, 14);
 		panelReporte2.add(lblDesde);
 		
-		JLabel lblSalidaFRep2 = new JLabel("");
+		lblSalidaFRep2 = new JLabel("");
 		lblSalidaFRep2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSalidaFRep2.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		lblSalidaFRep2.setBounds(488, 85, 172, 14);
 		panelReporte2.add(lblSalidaFRep2);
 		
+		//////////////////REPORTE 3///////////////////////
+		
 		panelReporte3 = new JPanel();
-		panelReporte3.setBounds(0, 299, 670, 134);
+		panelReporte3.setBounds(0, 299, 327, 145);
 		panel.add(panelReporte3);
 		panelReporte3.setLayout(null);
 		
+		lblReporte3 = new JLabel("Ingrese el nombre de la tienda");
+		lblReporte3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblReporte3.setFont(new Font("Roboto Black", Font.BOLD, 14));
+		lblReporte3.setBounds(10, 30, 305, 25);
+		panelReporte3.add(lblReporte3);
+		
+		textFieldR3 = new JTextField();
+		textFieldR3.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldR3.setFont(new Font("Roboto Black", Font.PLAIN, 13));
+		textFieldR3.setColumns(10);
+		textFieldR3.setBounds(10, 66, 305, 33);
+		panelReporte3.add(textFieldR3);
+		
+		btnRep3 = new JButton("Buscar");
+		btnRep3.setForeground(Color.WHITE);
+		btnRep3.setFont(new Font("Roboto Black", Font.PLAIN, 13));
+		btnRep3.setEnabled(false);
+		btnRep3.setBackground(SystemColor.textHighlight);
+		btnRep3.setBounds(115, 110, 95, 33);
+		panelReporte3.add(btnRep3);
+		
+		//////////////////REPORTE 4///////////////////////
+		
 		panelReporte4 = new JPanel();
-		panelReporte4.setBounds(0, 444, 670, 134);
+		panelReporte4.setBounds(343, 299, 327, 145);
 		panel.add(panelReporte4);
 		panelReporte4.setLayout(null);
+		
+		lblReporte4 = new JLabel("Ingrese la marca del producto deseado");
+		lblReporte4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblReporte4.setFont(new Font("Roboto Black", Font.BOLD, 14));
+		lblReporte4.setBounds(10, 30, 305, 25);
+		panelReporte4.add(lblReporte4);
+		
+		textFieldR4 = new JTextField();
+		textFieldR4.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldR4.setFont(new Font("Roboto Black", Font.PLAIN, 13));
+		textFieldR4.setColumns(10);
+		textFieldR4.setBounds(10, 66, 305, 33);
+		panelReporte4.add(textFieldR4);
+		
+		btnRep4 = new JButton("Buscar");
+		btnRep4.setForeground(Color.WHITE);
+		btnRep4.setFont(new Font("Roboto Black", Font.PLAIN, 13));
+		btnRep4.setEnabled(false);
+		btnRep4.setBackground(SystemColor.textHighlight);
+		btnRep4.setBounds(115, 110, 94, 33);
+		panelReporte4.add(btnRep4);
+		
+	}
+
+	public void actionPerformed(ActionEvent e) {
 		
 	}
 }

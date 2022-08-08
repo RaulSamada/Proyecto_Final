@@ -16,16 +16,20 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class Principal extends JFrame implements ActionListener {
 
 	private JPanel PanelPrincipal;
 	private JPanel panelVentanas;
 	private JPanel panelBotones;
+	private JPanel panelTitulo;
 	private JButton btnComprarComponenes;
 	private JButton btnArmarPc;
 	private JButton btnGestion;
 	private JButton btnReportes;
+	private JLabel lblTitulo;
 	
 
 	/////////////////////////////////////////////////////////////////////////////////////
@@ -67,9 +71,22 @@ public class Principal extends JFrame implements ActionListener {
 		
 		panelVentanas = new JPanel();
 		panelVentanas.setBackground(Color.WHITE);
-		panelVentanas.setBounds(244, 0, 690, 611);
+		panelVentanas.setBounds(245, 111, 689, 500);
 		PanelPrincipal.add(panelVentanas);
 		panelVentanas.setLayout(null);
+		
+		panelTitulo = new JPanel();
+		panelTitulo.setBackground(SystemColor.textHighlight);
+		panelTitulo.setBounds(255, 0, 669, 100);
+		PanelPrincipal.add(panelTitulo);
+		panelTitulo.setLayout(null);
+		
+		lblTitulo = new JLabel("");
+		lblTitulo.setForeground(SystemColor.text);
+		lblTitulo.setFont(new Font("Roboto Black", Font.PLAIN, 30));
+		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitulo.setBounds(10, 11, 649, 78);
+		panelTitulo.add(lblTitulo);
 		
 		panelBotones = new JPanel();
 		panelBotones.setBackground(SystemColor.textHighlight);
@@ -106,7 +123,7 @@ public class Principal extends JFrame implements ActionListener {
 		btnComprarComponenes.setBounds(0, 213, 244, 44);
 		panelBotones.add(btnComprarComponenes);
 		
-		
+				
 		
 	}
 
@@ -114,13 +131,17 @@ public class Principal extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		JPanel ventana;
+		String titulo;
 		
 		if(btnReportes == e.getSource()){
 			ventana = new Reportes ();
-			cambiarContenido(ventana);
+			titulo = "REPORTES";
+			cambiarContenido(ventana, titulo);
 		}else if(btnGestion == e.getSource()){
 			
 		}else if(btnArmarPc == e.getSource()){
+			
+		}else if(btnComprarComponenes == e.getSource()){
 			
 		}
 		
@@ -128,8 +149,10 @@ public class Principal extends JFrame implements ActionListener {
 		
 	}
 	
-	private void cambiarContenido(JPanel ventana){
-		ventana.setSize(690, 611);
+	private void cambiarContenido(JPanel ventana, String titulo){
+		lblTitulo.setText(titulo);
+		
+		ventana.setSize(689, 500);
 		ventana.setLocation(0, 0);
 		
 		panelVentanas.removeAll();
