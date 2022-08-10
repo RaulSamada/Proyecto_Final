@@ -6,7 +6,7 @@ public class Tienda {
 	
 	private String nombre;
 	private String idComp;
-	private String direccion;					//pendiente hacer el set de esta funcion
+	private String direccion;					
 	private String telefono;
 	private Gerente jefe;						
 	private	ArrayList<Trabajador> plantilla;	
@@ -18,7 +18,7 @@ public class Tienda {
 		
 		setNombre(nombre);
 		setIDComp(idComp);
-		setDireccion();//dentro va direccion
+		setDireccion(direccion);
 		setTelefono(telefono);
 		setGerente(jefe);
 	}
@@ -47,7 +47,12 @@ public class Tienda {
 				throw new NumberFormatException("Debe ser un número de 5 dígitos");
 		}
 	}
-	public void setDireccion(){}	//pendiente de hacer
+	public void setDireccion(String direccion) throws NullPointerException{
+		if(!direccion.isEmpty())
+			this.direccion = direccion;
+		else 
+			throw new NullPointerException("No ha introducido la direccion");
+	}	
 	public void setTelefono(String telefono) throws NumberFormatException {
 		long control;
 		boolean llave = false;		
