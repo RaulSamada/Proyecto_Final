@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 
 import java.awt.SystemColor;
 import java.awt.Color;
+import java.awt.TextField;
 
 import javax.swing.SwingConstants;
 
@@ -14,6 +15,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import utiles.Validador;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import utiles.Validador;
 
 public class Reportes extends JPanel implements ActionListener {
 
@@ -87,6 +95,12 @@ public class Reportes extends JPanel implements ActionListener {
 		panelReporte1.add(lblReporte1);
 		
 		textFieldR1 = new JTextField();
+		textFieldR1.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				utiles.Validador.soloLetras(e);
+				activarBoton(btnRep1, textFieldR1);
+			}
+		});
 		textFieldR1.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		textFieldR1.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldR1.setBounds(10, 66, 305, 33);
@@ -127,6 +141,12 @@ public class Reportes extends JPanel implements ActionListener {
 		panelReporte2.add(lblReporte2);
 		
 		textFieldR2 = new JTextField();
+		textFieldR2.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				utiles.Validador.soloLetras(e);
+				activarBoton(btnRep2, textFieldR2);
+			}
+		});
 		textFieldR2.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		textFieldR2.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldR2.setColumns(10);
@@ -185,6 +205,12 @@ public class Reportes extends JPanel implements ActionListener {
 		panelReporte3.add(lblReporte3);
 		
 		textFieldR3 = new JTextField();
+		textFieldR3.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				utiles.Validador.soloLetras(e);
+				activarBoton(btnRep3, textFieldR3);
+			}
+		});
 		textFieldR3.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldR3.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		textFieldR3.setColumns(10);
@@ -213,6 +239,12 @@ public class Reportes extends JPanel implements ActionListener {
 		panelReporte4.add(lblReporte4);
 		
 		textFieldR4 = new JTextField();
+		textFieldR4.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				utiles.Validador.soloLetras(e);
+				activarBoton(btnRep4, textFieldR4);
+			}
+		});
 		textFieldR4.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldR4.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		textFieldR4.setColumns(10);
@@ -229,6 +261,13 @@ public class Reportes extends JPanel implements ActionListener {
 		
 	}
 
+	public void activarBoton(JButton btn, JTextField txt){
+		if(!txt.getText().isEmpty())
+			btn.setEnabled(true);
+		else
+			btn.setEnabled(false);
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		
 	}

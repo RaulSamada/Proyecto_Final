@@ -126,8 +126,7 @@ public class Principal extends JFrame implements ActionListener {
 				
 		
 	}
-
-
+ 
 
 	public void actionPerformed(ActionEvent e) {
 		JPanel ventana;
