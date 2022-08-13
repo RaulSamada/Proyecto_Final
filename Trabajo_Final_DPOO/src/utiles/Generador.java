@@ -32,7 +32,7 @@ public class Generador {
 		
 		///////////////Creando Productos/////////////////////
 		String s1="zif",s2="bga",s3="pga",s4="lga";
-		String r1="ddr",r2="ddr-2",r3="ddr-3",r4="ddr4";
+		String r1="ddr",r2="ddr-2",r3="ddr-3",r4="ddr-4";
 		String c1="sata",c2="sata-2",c3="sata-3",c4="ide";
 		ArrayList<String> conexiones = new ArrayList<String>();
 		conexiones.add(c1);
@@ -99,7 +99,7 @@ public class Generador {
 		 * Añade la tienda a la compañia
 		 * 
 		 * */
-		
+		Company.getEmpresa();
 		Company.getEmpresa().addTienda(tienda1);
 		
 		

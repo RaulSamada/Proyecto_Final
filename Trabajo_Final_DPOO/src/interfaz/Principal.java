@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -32,7 +33,7 @@ public class Principal extends JFrame implements ActionListener {
 	private JLabel lblTitulo;
 	
 
-	/////////////////////////////////////////////////////////////////////////////////////
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -45,11 +46,13 @@ public class Principal extends JFrame implements ActionListener {
 			}
 		});
 	}
-	////////////////////////////////////////////////////////////////////////////////////
+	*/
 	
 	
 	
 	public Principal() {
+		
+		
 		setTitle("PRINCIPAL");
 		setType(Type.UTILITY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

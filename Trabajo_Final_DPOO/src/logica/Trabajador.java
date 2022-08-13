@@ -43,9 +43,11 @@ public class Trabajador {
 		boolean control = true;
 		int i = 0;
 		if(ci.length() == 11){
-			while(control && i<ci.length())
+			while(control && i<ci.length()){
 				if(!Character.isDigit(ci.charAt(i)))
 					control = false;
+				i++;
+			}
 			if(control)
 				this.ci = ci;
 			else
@@ -57,9 +59,11 @@ public class Trabajador {
 		boolean control = true;
 		int i = 0;
 		if(id.length() == 5){
-			while(control && i<id.length())
+			while(control && i<id.length()){
 				if(!Character.isDigit(id.charAt(i)))
 					control = false;
+				i++;
+			}
 			if(control)
 				this.id = id;
 			else

@@ -22,5 +22,17 @@ import javax.swing.JTextField;
 		else
 			btn.setEnabled(false);
 	}
+	public static String leerProducto (String producto){
+		if(producto.equalsIgnoreCase("micro")||producto.equalsIgnoreCase("procesador")||producto.equalsIgnoreCase("microprocesador")||producto.equalsIgnoreCase("cpu")){
+			return "micro";
+		}else if(producto.equalsIgnoreCase("motherboard")||producto.equalsIgnoreCase("board")||producto.equalsIgnoreCase("placa")||producto.equalsIgnoreCase("placa base")||producto.equalsIgnoreCase("placabase")){
+			return "motherboard";
+		}else if(producto.equalsIgnoreCase("ram")||producto.equalsIgnoreCase("memoria ram")){
+			return "ram";
+		}else if(producto.equalsIgnoreCase("disco")||producto.equalsIgnoreCase("disco duro")||producto.equalsIgnoreCase("almacenamiento")||producto.equalsIgnoreCase("memoria")){
+			return "disco";
+		}
+		return null;
+	}
 	
 }

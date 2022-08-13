@@ -1,5 +1,7 @@
 package interfaz;
 
+import javax.print.attribute.standard.JobMessageFromOperator;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
@@ -21,6 +23,7 @@ import utiles.Validador;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import logica.Company;
 import utiles.Validador;
 
 public class Reportes extends JPanel implements ActionListener {
@@ -113,6 +116,7 @@ public class Reportes extends JPanel implements ActionListener {
 		btnRep1.setFont(new Font("Roboto Black", Font.PLAIN, 13));
 		btnRep1.setBackground(SystemColor.textHighlight);
 		btnRep1.setBounds(325, 66, 89, 33);
+		btnRep1.addActionListener(this);
 		panelReporte1.add(btnRep1);
 		
 		lblSalida1 = new JLabel("La tienda con mayor abasto es:");
@@ -159,6 +163,7 @@ public class Reportes extends JPanel implements ActionListener {
 		btnRep2.setEnabled(false);
 		btnRep2.setBackground(SystemColor.textHighlight);
 		btnRep2.setBounds(325, 66, 89, 33);
+		btnRep2.addActionListener(this);
 		panelReporte2.add(btnRep2);
 		
 		lblSalida2 = new JLabel("Informaci\u00F3n del Gerente:");
@@ -223,6 +228,7 @@ public class Reportes extends JPanel implements ActionListener {
 		btnRep3.setEnabled(false);
 		btnRep3.setBackground(SystemColor.textHighlight);
 		btnRep3.setBounds(115, 110, 95, 33);
+		btnRep3.addActionListener(this);
 		panelReporte3.add(btnRep3);
 		
 		//////////////////REPORTE 4///////////////////////
@@ -257,6 +263,7 @@ public class Reportes extends JPanel implements ActionListener {
 		btnRep4.setEnabled(false);
 		btnRep4.setBackground(SystemColor.textHighlight);
 		btnRep4.setBounds(115, 110, 94, 33);
+		btnRep4.addActionListener(this);
 		panelReporte4.add(btnRep4);
 		
 	}
@@ -264,7 +271,11 @@ public class Reportes extends JPanel implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if(btnRep1 == e.getSource()){
-			
+			if(utiles.Validador.leerProducto(textFieldR1.getText()) != null){
+				lblSalidaRep1.setText(Company.getEmpresa().tiendaMasProducto(utiles.Validador.leerProducto(textFieldR1.getText())).getNombreTienda());	
+			}else{
+				JOptionPane.showMessageDialog(null, "El producto " + textFieldR1.getText() + " no es válido");
+			}
 		}else if(btnRep2 == e.getSource()){
 			
 		}else if(btnRep3 == e.getSource()){
