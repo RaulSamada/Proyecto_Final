@@ -54,10 +54,10 @@ public class Principal extends JFrame implements ActionListener {
 		setType(Type.UTILITY);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		
 		inicializarComponentes();
-		
-		
+		setLocationRelativeTo(null);
+		setResizable(false);
+			
 	}
 	
 	public void inicializarComponentes (){

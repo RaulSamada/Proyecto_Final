@@ -2,6 +2,9 @@ package utiles;
 
 import java.awt.event.KeyEvent;
 
+import javax.swing.JButton;
+import javax.swing.JTextField;
+
 	public abstract class  Validador {
 	public static void soloLetras(KeyEvent e){
 		char c = e.getKeyChar();
@@ -12,6 +15,12 @@ import java.awt.event.KeyEvent;
 		char c = e.getKeyChar();
 		if(c < 0 || c > 9)
 			e.consume();
+	}
+	public static void activarBoton(JButton btn, JTextField txt){
+		if(!txt.getText().isEmpty())
+			btn.setEnabled(true);
+		else
+			btn.setEnabled(false);
 	}
 	
 }

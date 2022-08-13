@@ -98,7 +98,7 @@ public class Reportes extends JPanel implements ActionListener {
 		textFieldR1.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				utiles.Validador.soloLetras(e);
-				activarBoton(btnRep1, textFieldR1);
+				utiles.Validador.activarBoton(btnRep1, textFieldR1);
 			}
 		});
 		textFieldR1.setFont(new Font("Roboto Black", Font.PLAIN, 13));
@@ -144,7 +144,7 @@ public class Reportes extends JPanel implements ActionListener {
 		textFieldR2.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				utiles.Validador.soloLetras(e);
-				activarBoton(btnRep2, textFieldR2);
+				utiles.Validador.activarBoton(btnRep2, textFieldR2);
 			}
 		});
 		textFieldR2.setFont(new Font("Roboto Black", Font.PLAIN, 13));
@@ -208,7 +208,7 @@ public class Reportes extends JPanel implements ActionListener {
 		textFieldR3.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				utiles.Validador.soloLetras(e);
-				activarBoton(btnRep3, textFieldR3);
+				utiles.Validador.activarBoton(btnRep3, textFieldR3);
 			}
 		});
 		textFieldR3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -242,7 +242,7 @@ public class Reportes extends JPanel implements ActionListener {
 		textFieldR4.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				utiles.Validador.soloLetras(e);
-				activarBoton(btnRep4, textFieldR4);
+				utiles.Validador.activarBoton(btnRep4, textFieldR4);
 			}
 		});
 		textFieldR4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -260,15 +260,16 @@ public class Reportes extends JPanel implements ActionListener {
 		panelReporte4.add(btnRep4);
 		
 	}
-
-	public void activarBoton(JButton btn, JTextField txt){
-		if(!txt.getText().isEmpty())
-			btn.setEnabled(true);
-		else
-			btn.setEnabled(false);
-	}
+	
 	
 	public void actionPerformed(ActionEvent e) {
-		
+		if(btnRep1 == e.getSource()){
+			
+		}else if(btnRep2 == e.getSource()){
+			
+		}else if(btnRep3 == e.getSource()){
+			
+		}else if(btnRep4 == e.getSource()){}
+			
 	}
 }
