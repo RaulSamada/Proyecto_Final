@@ -99,7 +99,6 @@ public class Generador {
 		 * Añade la tienda a la compañia
 		 * 
 		 * */
-		Company.getEmpresa();
 		Company.getEmpresa().addTienda(tienda1);
 		
 		

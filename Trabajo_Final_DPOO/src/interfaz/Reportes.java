@@ -1,10 +1,12 @@
 package interfaz;
 
 import javax.print.attribute.standard.JobMessageFromOperator;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
+import java.awt.List;
 import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.TextField;
@@ -18,12 +20,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import excepciones.NotValidInputException;
 import utiles.Validador;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import logica.Company;
+import logica.Trabajador;
 import utiles.Validador;
 
 public class Reportes extends JPanel implements ActionListener {
@@ -274,13 +279,32 @@ public class Reportes extends JPanel implements ActionListener {
 			if(utiles.Validador.leerProducto(textFieldR1.getText()) != null){
 				lblSalidaRep1.setText(Company.getEmpresa().tiendaMasProducto(utiles.Validador.leerProducto(textFieldR1.getText())).getNombreTienda());	
 			}else{
-				JOptionPane.showMessageDialog(null, "El producto " + textFieldR1.getText() + " no es válido");
+				utiles.Validador.errorPanel("El producto " + textFieldR1.getText() + " no es válido");
 			}
 		}else if(btnRep2 == e.getSource()){
-			
+			try{
+				lblSalidaTRep2.setText(Company.getEmpresa().infoGerente(textFieldR2.getText()).get(0));
+				lblSalidaFRep2.setText(Company.getEmpresa().infoGerente(textFieldR2.getText()).get(1));
+			}catch(NotValidInputException ex)
+			{
+				utiles.Validador.errorPanel(ex.getMessage());
+			}
 		}else if(btnRep3 == e.getSource()){
-			
+			try{
+				ArrayList<Trabajador> array =  Company.getEmpresa().infoTienda(textFieldR3.getText());
+				Reporte3 rep = new Reporte3(array);
+				rep.setVisible(true);
+			}catch(NotValidInputException ex){
+				utiles.Validador.errorPanel(ex.getMessage());
+			}
 		}else if(btnRep4 == e.getSource()){}
-			
+			try{
+				ArrayList<ArrayList<String>>array = Company.getEmpresa().buscarProductoMarca(textFieldR4.getText());
+				Reporte4 rep = new Reporte4(array);
+				rep.setVisible(true);
+			}catch(NotValidInputException ex){
+				utiles.Validador.errorPanel(ex.getMessage());
+			}
 	}
+		
 }

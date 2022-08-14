@@ -108,6 +108,7 @@ public class Tienda {
 					control = true;
 				}
 				lista.add(producto.getClass().getSimpleName());
+				lista.add(producto.getModelo());
 			}
 		}
 		

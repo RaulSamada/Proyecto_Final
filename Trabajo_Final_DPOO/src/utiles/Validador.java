@@ -3,6 +3,7 @@ package utiles;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 	public abstract class  Validador {
@@ -33,6 +34,9 @@ import javax.swing.JTextField;
 			return "disco";
 		}
 		return null;
+	}
+	public static void errorPanel (String msg){
+		 JOptionPane.showMessageDialog(null, msg,"ERROR",JOptionPane.ERROR_MESSAGE);
 	}
 	
 }
