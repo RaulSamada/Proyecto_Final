@@ -16,12 +16,17 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
+import excepciones.NonStock;
+
 import java.awt.SystemColor;
 import java.util.ArrayList;
 
 import logica.Company;
 import logica.Producto;
 import logica.Tienda;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ComprarComp extends JPanel {
 	private JTable table;
@@ -70,6 +75,45 @@ public class ComprarComp extends JPanel {
 		add(lblFiltrarPor);
 		
 		comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(comboBox.getSelectedItem() == "Precio"){
+					limpiarTabla ();
+				}else if(comboBox.getSelectedItem() == "Motherboard"){
+					limpiarTabla ();
+					try {
+						llenarTablaProd(Company.getEmpresa().filtrarPorComponente("Motherboard"));
+					} catch (NonStock ex) {
+						utiles.Validador.errorPanel(ex.getMessage());
+					}
+				}else if(comboBox.getSelectedItem() == "Microprocesador"){
+					limpiarTabla ();
+					try {
+						llenarTablaProd(Company.getEmpresa().filtrarPorComponente("micro"));
+					} catch (NonStock ex) {
+						utiles.Validador.errorPanel(ex.getMessage());
+					}
+				}else if(comboBox.getSelectedItem() == "Disco"){
+					limpiarTabla ();
+					try {
+						llenarTablaProd(Company.getEmpresa().filtrarPorComponente("disco"));
+					} catch (NonStock ex) {
+						utiles.Validador.errorPanel(ex.getMessage());
+					}
+				}else if(comboBox.getSelectedItem() == "RAM"){
+					limpiarTabla ();
+					try {
+						llenarTablaProd(Company.getEmpresa().filtrarPorComponente("ram"));
+					} catch (NonStock ex) {
+						utiles.Validador.errorPanel(ex.getMessage());
+					}
+				}else if(comboBox.getSelectedItem() == ""){
+					limpiarTabla ();
+					llenarTabla(Company.getEmpresa().getTienda());
+				}
+			}
+		});
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Precio", "Motherboard", "Microprocesador", "Disco", "RAM"}));
 		comboBox.setBounds(408, 62, 271, 34);
 		add(comboBox);
@@ -119,17 +163,22 @@ public class ComprarComp extends JPanel {
 	private void llenarTabla(ArrayList<Tienda> tiendas) {
 		
 		for(Tienda tienda : tiendas){
-			model.setRowCount(0);
-			for(Producto producto : tienda.getProducto()){
-				Object[] fila = new Object[4];
-				fila[0] = producto.getClass().getSimpleName();
-				fila[1] = producto.getMarca();
-				fila[2] = producto.getModelo();
-				fila[3] = producto.getPrecio();
-				model.addRow(fila);
-			}
+			llenarTablaProd(tienda.getProducto());
+			}		
+	}
+	private void llenarTablaProd(ArrayList<Producto> productos){
+		model.setRowCount(0);
+		for(Producto producto : productos){
+			Object[] fila = new Object[4];
+			fila[0] = producto.getClass().getSimpleName();
+			fila[1] = producto.getMarca();
+			fila[2] = producto.getModelo();
+			fila[3] = producto.getPrecio();
+			model.addRow(fila);
 		}
-		
+	}	
+	private void limpiarTabla (){
+		model.setRowCount(0);
 	}
 	
 }

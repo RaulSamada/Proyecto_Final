@@ -2,6 +2,7 @@ package logica;
 
 import java.util.ArrayList;
 
+import excepciones.NonStock;
 import excepciones.NotValidInputException;
 
 public class Company {
@@ -24,7 +25,18 @@ public class Company {
 	public ArrayList<Tienda> getTienda (){
 		return this.tiendas; 
 	}
-	
+	public  ArrayList<Producto> filtrarPorComponente (String prod) throws NonStock{
+		ArrayList<Producto>devolver = new ArrayList<Producto>();
+		for (Tienda tienda : tiendas)
+			for(Producto producto : tienda.getProducto())
+				if(producto.getClass().getSimpleName().equalsIgnoreCase(prod))
+					devolver.add(producto);
+					
+		if(devolver.size()>0)
+			return devolver;
+		else
+			throw new NonStock("No hay "+prod+" en stock");
+	}
 	//REPORTES
 	
 	//REPORTE 1:

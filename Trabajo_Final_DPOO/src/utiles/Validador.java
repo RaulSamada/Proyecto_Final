@@ -1,10 +1,15 @@
 package utiles;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import excepciones.NonStock;
+import logica.Producto;
 
 	public abstract class  Validador {
 	public static void soloLetras(KeyEvent e){
