@@ -297,7 +297,7 @@ public class Reportes extends JPanel implements ActionListener {
 			}catch(NotValidInputException ex){
 				utiles.Validador.errorPanel(ex.getMessage());
 			}
-		}else if(btnRep4 == e.getSource()){}
+		}else if(btnRep4 == e.getSource()){
 			try{
 				ArrayList<ArrayList<String>>array = Company.getEmpresa().buscarProductoMarca(textFieldR4.getText());
 				Reporte4 rep = new Reporte4(array);
@@ -305,6 +305,8 @@ public class Reportes extends JPanel implements ActionListener {
 			}catch(NotValidInputException ex){
 				utiles.Validador.errorPanel(ex.getMessage());
 			}
+		}
+			
 	}
 		
 }
