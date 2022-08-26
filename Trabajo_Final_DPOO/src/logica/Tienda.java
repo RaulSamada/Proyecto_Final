@@ -117,5 +117,14 @@ public class Tienda {
 		else
 			return null;
 	}
+	public Producto getProductoSelect (String producto, String marca, String modelo, double precio){
+		Producto devolver = null;
+		for(Producto elemento : almacen){
+			if (producto.equalsIgnoreCase(elemento.getClass().getSimpleName()) && marca.equalsIgnoreCase(elemento.getMarca()) && modelo.equalsIgnoreCase(elemento.getModelo()) && precio == elemento.getPrecio()){
+				devolver = elemento;
+			}
+		}
+		return devolver;
+	}
 	
 }

@@ -28,7 +28,7 @@ import logica.Tienda;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ComprarComp extends JPanel {
+public class ComprarComp extends JPanel implements ActionListener{
 	private JTable table;
 	private DefaultTableModel model;
 	private JComboBox comboBox;
@@ -40,15 +40,15 @@ public class ComprarComp extends JPanel {
 	private JPanel panel;
 	private JLabel lblPrecio;
 	private JLabel lblPrecioSalida;
+	private ArrayList<Producto>carrito;
 
 	/**
 	 * Create the panel.
 	 */
 	public ComprarComp() {
 		setBackground(Color.WHITE);
-		
+		carrito = new ArrayList<Producto>();
 		inicializarComponentes();
-
 	}
 	
 	private void inicializarComponentes(){
@@ -130,6 +130,7 @@ public class ComprarComp extends JPanel {
 		btnVerCarrito.setFont(new Font("Roboto Black", Font.PLAIN, 15));
 		btnVerCarrito.setBackground(SystemColor.textHighlight);
 		btnVerCarrito.setBounds(554, 251, 125, 34);
+		btnVerCarrito.addActionListener(this);
 		add(btnVerCarrito);
 		
 		btnAnnadir = new JButton("A\u00F1adir");
@@ -137,6 +138,7 @@ public class ComprarComp extends JPanel {
 		btnAnnadir.setFont(new Font("Roboto Black", Font.PLAIN, 15));
 		btnAnnadir.setBackground(SystemColor.textHighlight);
 		btnAnnadir.setBounds(408, 251, 125, 34);
+		btnAnnadir.addActionListener(this);
 		add(btnAnnadir);
 		
 		panel = new JPanel();
@@ -179,6 +181,26 @@ public class ComprarComp extends JPanel {
 	}	
 	private void limpiarTabla (){
 		model.setRowCount(0);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if(btnAnnadir == e.getSource()){
+			int seleccion = table.getSelectedRow();			
+			if(utiles.Validador.seleccionTabla(seleccion)){
+				String producto = table.getValueAt(seleccion, 0).toString();
+				String marca	= table.getValueAt(seleccion, 1).toString();
+				String modelo	= table.getValueAt(seleccion, 2).toString();
+				double precio	= Double.parseDouble(table.getValueAt(seleccion, 3).toString());
+				carrito.add(Company.getEmpresa().comprarProducto(producto, marca, modelo, precio));
+			}else
+				utiles.Validador.errorPanel("No ha seleccionado un elemento de la tabla");
+		}else if(btnVerCarrito == e.getSource()){
+			if(carrito.size() != 0){
+				Carrito mostrar = new Carrito(carrito);
+				mostrar.setVisible(true);
+			}else
+				utiles.Validador.errorPanel("No ha añadido ningun elemento al carrito");
+		}
 	}
 	
 }

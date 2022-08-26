@@ -37,6 +37,12 @@ public class Company {
 		else
 			throw new NonStock("No hay "+prod+" en stock");
 	}
+	public Producto comprarProducto (String producto, String marca, String modelo, double precio){
+		Producto devolver = null;
+		for(int i = 0; i < tiendas.size() && devolver == null; i++)
+			devolver = tiendas.get(i).getProductoSelect(producto, marca, modelo, precio);
+		return devolver;
+	}
 	//REPORTES
 	
 	//REPORTE 1:
