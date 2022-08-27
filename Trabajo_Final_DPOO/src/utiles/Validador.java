@@ -46,5 +46,13 @@ import logica.Producto;
 	public static boolean seleccionTabla (int row){
 			return row >= 0? true : false;
 	}
-	
+	public static boolean enCarrito (ArrayList<Producto> carrito, Producto compra){
+		if(carrito.size()>0){
+			for(Producto producto : carrito){
+				if(producto == compra)
+					return true;
+			}
+		}
+			return false;
+	}
 }

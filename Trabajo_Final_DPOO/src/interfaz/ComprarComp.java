@@ -2,6 +2,7 @@ package interfaz;
 
 import javax.swing.JPanel;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JScrollPane;
@@ -160,6 +161,7 @@ public class ComprarComp extends JPanel implements ActionListener{
 		lblPrecioSalida.setFont(new Font("Roboto Black", Font.PLAIN, 54));
 		lblPrecioSalida.setBounds(0, 47, 271, 101);
 		panel.add(lblPrecioSalida);
+		
 	}
 
 	private void llenarTabla(ArrayList<Tienda> tiendas) {
@@ -184,6 +186,7 @@ public class ComprarComp extends JPanel implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
 		if(btnAnnadir == e.getSource()){
 			int seleccion = table.getSelectedRow();			
 			if(utiles.Validador.seleccionTabla(seleccion)){
@@ -191,7 +194,10 @@ public class ComprarComp extends JPanel implements ActionListener{
 				String marca	= table.getValueAt(seleccion, 1).toString();
 				String modelo	= table.getValueAt(seleccion, 2).toString();
 				double precio	= Double.parseDouble(table.getValueAt(seleccion, 3).toString());
-				carrito.add(Company.getEmpresa().comprarProducto(producto, marca, modelo, precio));
+				if(!utiles.Validador.enCarrito(carrito, Company.getEmpresa().comprarProducto(producto, marca, modelo, precio)))
+					carrito.add(Company.getEmpresa().comprarProducto(producto, marca, modelo, precio));
+				else
+					utiles.Validador.errorPanel("El elemento ya ha sido añadido al carrito");
 			}else
 				utiles.Validador.errorPanel("No ha seleccionado un elemento de la tabla");
 		}else if(btnVerCarrito == e.getSource()){
@@ -200,6 +206,19 @@ public class ComprarComp extends JPanel implements ActionListener{
 				mostrar.setVisible(true);
 			}else
 				utiles.Validador.errorPanel("No ha añadido ningun elemento al carrito");
+		}else if(btnPagar == e.getSource()){
+			
+		}
+		actualizarPrecio(carrito);
+	}
+	public void actualizarPrecio(ArrayList<Producto>carrito){
+		lblPrecioSalida.setText("");
+		if(carrito.size() > 0){
+			double total=0;
+			for(Producto producto : carrito){
+				total += producto.getPrecio();
+				lblPrecioSalida.setText(String.valueOf(total));
+			}
 		}
 	}
 	
