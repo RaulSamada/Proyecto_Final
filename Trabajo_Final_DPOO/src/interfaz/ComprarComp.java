@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
@@ -124,6 +125,7 @@ public class ComprarComp extends JPanel implements ActionListener{
 		btnPagar.setForeground(SystemColor.text);
 		btnPagar.setFont(new Font("Roboto Black", Font.PLAIN, 15));
 		btnPagar.setBounds(472, 296, 144, 34);
+		btnPagar.addActionListener(this);
 		add(btnPagar);
 		
 		btnVerCarrito = new JButton("Ver Carrito");
@@ -207,7 +209,23 @@ public class ComprarComp extends JPanel implements ActionListener{
 			}else
 				utiles.Validador.errorPanel("No ha añadido ningun elemento al carrito");
 		}else if(btnPagar == e.getSource()){
-			
+			if(carrito.size()>0){
+				for(Producto producto : carrito){
+					for(Tienda tienda : Company.getEmpresa().getTienda()){
+						for(int i = 0; i < tienda.getProducto().size(); i++){
+							if(producto == tienda.getProducto().get(i)){
+								tienda.getProducto().remove(i);
+							}
+						}
+					}
+				}
+				limpiarTabla();
+				llenarTabla(Company.getEmpresa().getTienda());
+				JOptionPane.showMessageDialog(null, "Muchas gracias por su compra");
+				limpiarCarrito();
+			}
+			else 
+				utiles.Validador.errorPanel("No ha seleccionado elementos para comprar");
 		}
 		actualizarPrecio(carrito);
 	}
@@ -220,6 +238,9 @@ public class ComprarComp extends JPanel implements ActionListener{
 				lblPrecioSalida.setText(String.valueOf(total));
 			}
 		}
+	}
+	private void limpiarCarrito(){
+			carrito.clear();;
 	}
 	
 }
