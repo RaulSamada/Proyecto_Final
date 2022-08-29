@@ -20,10 +20,12 @@ import javax.swing.table.DefaultTableModel;
 
 import excepciones.NonStock;
 import logica.Company;
+import logica.Disco;
 import logica.Micro;
 import logica.MotherBoard;
 import logica.PC;
 import logica.Producto;
+import logica.RAM;
 import logica.Tienda;
 
 public class ArmarPC extends JPanel implements ActionListener{
@@ -152,7 +154,7 @@ public class ArmarPC extends JPanel implements ActionListener{
 			}else if(componentes.size()== 3){
 				limpiarTabla();
 				try {
-					llenarTabla(Company.getEmpresa().discoCompatible((MotherBoard) componentes.get(0)));
+					llenarTabla(Company.getEmpresa().discoCompatible((MotherBoard) componentes.get(0)));//AQUI NO ESTA RECONOCIENDO EL SIZE DE LAS CONEXIONES
 					btnPagar.setEnabled(true);
 				} catch (NonStock e1) {
 					utiles.Validador.errorPanel("No tenemos discos duros compatibles");
@@ -166,7 +168,26 @@ public class ArmarPC extends JPanel implements ActionListener{
 			}
 			componentes.clear();
 		}else if(btnPagar == e.getSource()){
+			computadora.setPlaca((MotherBoard) componentes.get(0));
+			try {
+				computadora.setMicro((Micro) componentes.get(1));
+			} catch (Exception e1) {
+				utiles.Validador.errorPanel(e1.getMessage());
+			}
+			try {
+				computadora.setRAM((RAM) componentes.get(2));
+			} catch (Exception e1) {
+				utiles.Validador.errorPanel(e1.getMessage());
+			}
+			try {
+				computadora.setDisco((Disco) componentes.get(3));
+			} catch (Exception e1) {
+				utiles.Validador.errorPanel(e1.getMessage());
+			}
+			Recibo recibo = new Recibo(componentes);
+			recibo.setVisible(true);
 			btnPagar.setEnabled(false);
+			btnReset.doClick();
 		}
 		
 	}

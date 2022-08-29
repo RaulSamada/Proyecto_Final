@@ -221,7 +221,8 @@ public class ComprarComp extends JPanel implements ActionListener{
 				}
 				limpiarTabla();
 				llenarTabla(Company.getEmpresa().getTienda());
-				JOptionPane.showMessageDialog(null, "Muchas gracias por su compra");
+				Recibo recibo = new Recibo(carrito);
+				recibo.setVisible(true);
 				limpiarCarrito();
 			}
 			else 
