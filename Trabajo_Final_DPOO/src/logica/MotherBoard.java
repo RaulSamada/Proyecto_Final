@@ -12,13 +12,22 @@ public class MotherBoard extends Producto{
 	public MotherBoard(String marca, String modelo, double precio,String socket,String tipoRAM, ArrayList<String>conexiones) throws Exception{		
 		super(marca, modelo, precio);
 		
-		conexiones = new ArrayList<String>();
+		this.conexiones = new ArrayList<String>();
 		
 		setSocket(socket);
 		setTipoRAM(tipoRAM);
 		setConexiones(conexiones);
 	}
 	
+	public MotherBoard(String marca, String modelo, double precio,String socket,String tipoRAM,String conexion) throws Exception {
+		super(marca, modelo, precio);
+		this.conexiones = new ArrayList<String>();
+		
+		setSocket(socket);
+		setTipoRAM(tipoRAM);
+		addConexion(conexion);
+	}
+
 	private void setSocket(String socket) throws NotValidInputException{
 		if(socket.equalsIgnoreCase("lga") || socket.equalsIgnoreCase("bga") || socket.equalsIgnoreCase("pga") || socket.equalsIgnoreCase("zif"))
 			this.socket = socket;
@@ -43,6 +52,12 @@ public class MotherBoard extends Producto{
 			this.conexiones = conexiones;
 		else
 			throw new NotValidInputException("El elemento " + contador + "no es válido");
+	}
+	private void addConexion(String conexion)throws NotValidInputException{
+		if(conexion.equalsIgnoreCase("ide") ||conexion.equalsIgnoreCase("sata") ||conexion.equalsIgnoreCase("sata-2") ||conexion.equalsIgnoreCase("sata-3"))
+			this.conexiones.add(conexion);
+		else 
+			throw new NotValidInputException("La conexión del disco no es una entrada válida");
 	}
 	
 	public String getSocket (){return this.socket;}

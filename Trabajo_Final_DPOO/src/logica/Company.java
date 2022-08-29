@@ -43,7 +43,13 @@ public class Company {
 			devolver = tiendas.get(i).getProductoSelect(producto, marca, modelo, precio);
 		return devolver;
 	}
-	
+	public Tienda getTienda(String nombre) throws NotValidInputException{
+		for (Tienda tienda : tiendas){
+			if(tienda.getNombreTienda().equalsIgnoreCase(nombre))
+				return tienda;
+		}
+		throw new NotValidInputException("No existe la tienda "+nombre);
+	}
 	
 	public ArrayList<Producto> microCompatible (MotherBoard board)throws NonStock{
 		ArrayList<Producto>devolver = new ArrayList<Producto>();

@@ -47,6 +47,7 @@ public class AddComp extends JDialog {
 		{
 			inicializarComponentes();
 		}
+		
 		setLocationRelativeTo(null);
 	}
 	private void inicializarComponentes(){
@@ -67,13 +68,20 @@ public class AddComp extends JDialog {
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comboBox.getSelectedItem()=="Motherboard"){
-					
+					AddBoard ventana = new AddBoard();
+					cambiarPanel(ventana);
 				}else if(comboBox.getSelectedItem()=="Microprocesador"){
-					
+					AddMicro ventana = new AddMicro();
+					cambiarPanel(ventana);
 				}else if(comboBox.getSelectedItem()=="RAM"){
 					
 				}else if(comboBox.getSelectedItem()=="Disco"){
 					
+				}else if(comboBox.getSelectedItem()==""){
+					panel = new JPanel();
+					panel.setBackground(SystemColor.text);
+					panel.setBounds(10, 50, 644, 388);
+					cambiarPanel(panel);
 				}
 			}
 		});
@@ -85,6 +93,7 @@ public class AddComp extends JDialog {
 		panelContenedor.setBackground(SystemColor.text);
 		panelContenedor.setBounds(10, 50, 644, 388);
 		panel.add(panelContenedor);
+		panelContenedor.setLayout(null);
 		
 	}
 	private void cambiarPanel(JPanel ventana){

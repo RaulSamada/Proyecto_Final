@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -23,7 +24,7 @@ import logica.RAM;
 	}
 	public static void soloNumeros(KeyEvent e){
 		char c = e.getKeyChar();
-		if(c < 0 || c > 9)
+		if(c < 48 || c > 57)
 			e.consume();
 	}
 	public static void activarBoton(JButton btn, JTextField txt){
@@ -59,5 +60,13 @@ import logica.RAM;
 		}
 			return false;
 	}
-
+	public static boolean enviar(ArrayList<JTextField> textos){
+		boolean t = false;
+		for(JTextField text : textos){
+			t = false;
+			if(!text.getText().isEmpty())
+				t = true;
+		}
+		return t;
+	}
 }

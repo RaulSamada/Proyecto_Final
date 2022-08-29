@@ -2,7 +2,9 @@ package interfaz;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -10,20 +12,32 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
-import java.awt.SystemColor;
+import javax.swing.table.DefaultTableModel;
 
-public class AddBoard extends JPanel {
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import logica.Company;
+import logica.MotherBoard;
+
+public class AddBoard extends JPanel implements ActionListener{
+	private ArrayList<JTextField>textos;
 	private JTextField textFieldMarca;
 	private JTextField textFieldModelo;
 	private JTextField textFieldSocket;
-	private JTable table;
-	private JTextField textFieldTienda;
+	private JTextField textFieldRAM;
+	private JTextField textFieldConexion;
+	private JLabel lblPrecio;
 	private JTextField textFieldPrecio;
-	private JComboBox comboBoxC;
-	private JComboBox comboBox;
-	private JScrollPane scrollPane;
-	private JButton btnEnviar;
-	private JButton btnAddCon;
+	private JPanel panel;
+	private JLabel lblTienda;
+	private JTextField textFieldTienda;
+	private JButton btnAñadir;
 
 	/**
 	 * Create the panel.
@@ -31,16 +45,19 @@ public class AddBoard extends JPanel {
 	public AddBoard() {
 		setLayout(null);
 		
+		textos = new ArrayList<JTextField>();
+		
+		iniicializarComponenetes();
+		
+
+	}
+	private void iniicializarComponenetes(){
+		
 		JLabel lblMarca = new JLabel("Marca:");
 		lblMarca.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMarca.setFont(new Font("Roboto Black", Font.PLAIN, 17));
 		lblMarca.setBounds(10, 11, 98, 31);
 		add(lblMarca);
-		
-		textFieldMarca = new JTextField();
-		textFieldMarca.setBounds(118, 11, 169, 31);
-		add(textFieldMarca);
-		textFieldMarca.setColumns(10);
 		
 		JLabel lblModelo = new JLabel("Modelo:");
 		lblModelo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -48,21 +65,11 @@ public class AddBoard extends JPanel {
 		lblModelo.setBounds(10, 53, 98, 31);
 		add(lblModelo);
 		
-		textFieldModelo = new JTextField();
-		textFieldModelo.setColumns(10);
-		textFieldModelo.setBounds(118, 53, 169, 31);
-		add(textFieldModelo);
-		
 		JLabel lblSocket = new JLabel("Socket:");
 		lblSocket.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSocket.setFont(new Font("Roboto Black", Font.PLAIN, 17));
 		lblSocket.setBounds(10, 95, 98, 31);
 		add(lblSocket);
-		
-		textFieldSocket = new JTextField();
-		textFieldSocket.setColumns(10);
-		textFieldSocket.setBounds(118, 95, 169, 31);
-		add(textFieldSocket);
 		
 		JLabel lblRAM = new JLabel("RAM:");
 		lblRAM.setHorizontalAlignment(SwingConstants.CENTER);
@@ -70,74 +77,109 @@ public class AddBoard extends JPanel {
 		lblRAM.setBounds(10, 137, 98, 31);
 		add(lblRAM);
 		
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "DDR", "DDR-2", "DDR-3", "DDR-4"}));
-		comboBox.setBounds(118, 137, 169, 31);
-		add(comboBox);
-		
-		JLabel lblConexiones = new JLabel("Conexiones:");
+		JLabel lblConexiones = new JLabel("Conexi\u00F3n:");
 		lblConexiones.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConexiones.setFont(new Font("Roboto Black", Font.PLAIN, 17));
 		lblConexiones.setBounds(10, 179, 98, 31);
 		add(lblConexiones);
 		
-		comboBoxC = new JComboBox();
-		comboBoxC.setModel(new DefaultComboBoxModel(new String[] {"", "IDE", "SATA", "SATA-2", "SATA-3"}));
-		comboBoxC.setBounds(118, 179, 169, 31);
-		add(comboBoxC);
+		textFieldMarca = new JTextField();
+		textFieldMarca.setBounds(118, 18, 145, 20);
+		add(textFieldMarca);
+		textFieldMarca.setColumns(10);
 		
-		scrollPane = new JScrollPane();
-		scrollPane.setBounds(347, 40, 287, 204);
-		add(scrollPane);
+		textFieldModelo = new JTextField();
+		textFieldModelo.setColumns(10);
+		textFieldModelo.setBounds(118, 60, 145, 20);
+		add(textFieldModelo);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		textFieldSocket = new JTextField();
+		textFieldSocket.setColumns(10);
+		textFieldSocket.setBounds(118, 102, 145, 20);
+		add(textFieldSocket);
 		
-		JLabel lblConexAdded = new JLabel("Conexiones A\u00F1adidas:");
-		lblConexAdded.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConexAdded.setFont(new Font("Roboto Black", Font.PLAIN, 17));
-		lblConexAdded.setBounds(347, 11, 287, 31);
-		add(lblConexAdded);
+		textFieldRAM = new JTextField();
+		textFieldRAM.setColumns(10);
+		textFieldRAM.setBounds(118, 144, 145, 20);
+		add(textFieldRAM);
 		
-		btnAddCon = new JButton("A\u00F1adir");
-		btnAddCon.setFont(new Font("Roboto Black", Font.PLAIN, 13));
-		btnAddCon.setBounds(198, 221, 89, 23);
-		add(btnAddCon);
+		textFieldConexion = new JTextField();
+		textFieldConexion.setColumns(10);
+		textFieldConexion.setBounds(118, 186, 145, 20);
+		add(textFieldConexion);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(347, 255, 287, 120);
-		add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblNombreTienda = new JLabel("Introduzca el nombre de la Tienda:");
-		lblNombreTienda.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNombreTienda.setFont(new Font("Roboto Black", Font.PLAIN, 14));
-		lblNombreTienda.setBounds(10, 11, 267, 26);
-		panel.add(lblNombreTienda);
-		
-		textFieldTienda = new JTextField();
-		textFieldTienda.setBounds(10, 48, 267, 26);
-		panel.add(textFieldTienda);
-		textFieldTienda.setColumns(10);
-		
-		btnEnviar = new JButton("Enviar");
-		btnEnviar.setForeground(SystemColor.text);
-		btnEnviar.setBackground(SystemColor.textHighlight);
-		btnEnviar.setFont(new Font("Roboto Black", Font.PLAIN, 14));
-		btnEnviar.setEnabled(false);
-		btnEnviar.setBounds(99, 86, 89, 23);
-		panel.add(btnEnviar);
-		
-		JLabel lblPrecio = new JLabel("Precio:");
+		lblPrecio = new JLabel("Precio:");
 		lblPrecio.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrecio.setFont(new Font("Roboto Black", Font.PLAIN, 17));
-		lblPrecio.setBounds(10, 344, 98, 31);
+		lblPrecio.setBounds(10, 221, 98, 31);
 		add(lblPrecio);
 		
 		textFieldPrecio = new JTextField();
+		textFieldPrecio.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				utiles.Validador.soloNumeros(e);
+			}
+		});
 		textFieldPrecio.setColumns(10);
-		textFieldPrecio.setBounds(118, 344, 169, 31);
+		textFieldPrecio.setBounds(118, 228, 145, 20);
 		add(textFieldPrecio);
-
+		
+		panel = new JPanel();
+		panel.setBounds(297, 42, 337, 168);
+		add(panel);
+		panel.setLayout(null);
+		
+		lblTienda = new JLabel("Introduzca el nombre de la Tienda que recibe:");
+		lblTienda.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTienda.setFont(new Font("Roboto Black", Font.PLAIN, 15));
+		lblTienda.setBounds(10, 11, 317, 44);
+		panel.add(lblTienda);
+		
+		textFieldTienda = new JTextField();
+		textFieldTienda.setBounds(10, 66, 317, 34);
+		panel.add(textFieldTienda);
+		textFieldTienda.setColumns(10);
+		
+		btnAñadir = new JButton("A\u00F1adir");
+		btnAñadir.setForeground(SystemColor.text);
+		btnAñadir.setBackground(SystemColor.textHighlight);
+		btnAñadir.setFont(new Font("Roboto Black", Font.PLAIN, 13));
+		btnAñadir.setBounds(124, 111, 89, 44);
+		btnAñadir.addActionListener(this);
+		panel.add(btnAñadir);
+		
+		textos.add(textFieldMarca);
+		textos.add(textFieldModelo);
+		textos.add(textFieldRAM);
+		textos.add(textFieldConexion);
+		textos.add(textFieldPrecio);
+		textos.add(textFieldTienda);
+		textos.add(textFieldSocket);
 	}
+	public void actionPerformed(ActionEvent e) {
+		
+		if(btnAñadir == e.getSource()){
+			if(utiles.Validador.enviar(textos)){
+				String marca = textos.get(0).getText();
+				String modelo = textos.get(1).getText();
+				String ram = textos.get(2).getText();
+				String conexion = textos.get(3).getText();
+				double precio = Double.parseDouble(textos.get(4).getText());
+				String tienda = textos.get(5).getText();
+				String socket = textos.get(6).getText();
+				
+				try {
+					MotherBoard producto = new MotherBoard(marca, modelo, precio, socket, ram, conexion);
+					Company.getEmpresa().getTienda(tienda).addProducto(producto);
+				} catch (Exception e1) {
+					utiles.Validador.errorPanel(e1.getMessage());
+				}
+				
+			}else
+				utiles.Validador.errorPanel("Faltan campos por llenar");
+		}
+		
+	}
+
 }
