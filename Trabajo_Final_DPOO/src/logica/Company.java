@@ -43,6 +43,53 @@ public class Company {
 			devolver = tiendas.get(i).getProductoSelect(producto, marca, modelo, precio);
 		return devolver;
 	}
+	
+	
+	public ArrayList<Producto> microCompatible (MotherBoard board)throws NonStock{
+		ArrayList<Producto>devolver = new ArrayList<Producto>();
+		for(Tienda tienda : tiendas){
+			for(Micro micro :  tienda.listaMicro())
+			if(board.getSocket().equalsIgnoreCase(micro.getSocket()))
+				devolver.add(micro);
+		}
+		if(devolver.size() > 0)
+			return devolver;
+		else
+			throw new NonStock("No hay Microprocesadores compatibles con la Motherboard");
+	}
+	public ArrayList<Producto> ramCompatible (MotherBoard board)throws NonStock{
+		ArrayList<Producto>devolver = new ArrayList<Producto>();
+		for(Tienda tienda : tiendas){
+			for(RAM ram :  tienda.listaRAM())
+			if(board.getTipoRAM().equalsIgnoreCase(ram.getTipoRAM()))
+				devolver.add(ram);
+		}
+		if(devolver.size() > 0)
+			return devolver;
+		else
+			throw new NonStock("No hay Memorias RAM compatibles con la Motherboard");
+	}
+	public ArrayList<Producto> discoCompatible (MotherBoard board)throws NonStock{
+		ArrayList<Producto>devolver = new ArrayList<Producto>();
+		for(Tienda tienda : tiendas){
+			boolean control = false;
+			for(Disco disco : tienda.listaDisco()){
+				control = false;
+				for(int i = 0; i < board.getConexiones().size() && !control;i++)
+					if(board.getConexiones(i).equalsIgnoreCase(disco.getConexion())){
+						devolver.add(disco);
+						control = true;
+					}
+			}
+		}
+		if(devolver.size() > 0)
+			return devolver;
+		else
+			throw new NonStock("No hay Discos Duros compatibles con la Motherboard");
+	}
+	
+	
+	
 	//REPORTES
 	
 	//REPORTE 1:

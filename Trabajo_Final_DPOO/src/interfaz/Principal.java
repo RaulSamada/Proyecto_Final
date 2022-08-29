@@ -145,7 +145,9 @@ public class Principal extends JFrame implements ActionListener {
 		}else if(btnGestion == e.getSource()){
 			
 		}else if(btnArmarPc == e.getSource()){
-			
+			ventana = new ArmarPC();
+			titulo = "ARMAR PC";
+			cambiarContenido(ventana, titulo);
 		}else if(btnComprarComponenes == e.getSource()){
 			ventana = new ComprarComp();
 			titulo = "COMPRAR COMPONENTES";

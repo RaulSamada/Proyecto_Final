@@ -126,5 +126,38 @@ public class Tienda {
 		}
 		return devolver;
 	}
+	public ArrayList<Micro> listaMicro(){
+		ArrayList<Micro>devolver = new ArrayList<Micro>();
+		for(Producto producto : almacen){
+			if(producto.getClass().getSimpleName().equalsIgnoreCase("micro"))
+				devolver.add((Micro) producto);
+		}
+		if(devolver.size() > 0)
+			return devolver;
+		else
+			return null;
+	}
+	public ArrayList<Disco> listaDisco(){
+		ArrayList<Disco>devolver = new ArrayList<Disco>();
+		for(Producto producto : almacen){
+			if(producto.getClass().getSimpleName().equalsIgnoreCase("disco"))
+				devolver.add((Disco) producto);
+		}
+		if(devolver.size() > 0)
+			return devolver;
+		else
+			return null;
+	}
+	public ArrayList<RAM> listaRAM(){
+		ArrayList<RAM>devolver = new ArrayList<RAM>();
+		for(Producto producto : almacen){
+			if(producto.getClass().getSimpleName().equalsIgnoreCase("RAM"))
+				devolver.add((RAM) producto);
+		}
+		if(devolver.size() > 0)
+			return devolver;
+		else
+			return null;
+	}
 	
 }

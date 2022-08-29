@@ -25,6 +25,7 @@ public class PC {
 		setDisco(almacenamiento);
 	}
 	
+	public PC() {}
 	public void setPlaca(MotherBoard placa) throws NullPointerException{
 		if(placa != null)
 			this.placa = placa;

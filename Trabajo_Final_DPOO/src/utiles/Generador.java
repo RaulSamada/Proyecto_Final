@@ -63,7 +63,7 @@ public class Generador {
 		
 		Producto p13 = new RAM("Hyperex", "HX421", 50, 4, r4);
 		Producto p14 = new RAM("Hyperex", "HX424", 80, 8, r4);
-		Producto p15 = new RAM("asus", "X54C", 40, 2, r4);
+		Producto p15 = new RAM("asus", "X54C", 40, 2, r2);
 		
 		ArrayList<Producto> productos1 = new ArrayList<Producto>();
 		
