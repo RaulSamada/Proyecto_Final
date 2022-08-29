@@ -59,42 +59,5 @@ import logica.RAM;
 		}
 			return false;
 	}
-	public static ArrayList<Micro> microCompatible(MotherBoard board,ArrayList<Micro> lista)throws NonStock{
-		ArrayList<Micro>devolver = new ArrayList<Micro>();
-		for(Micro micro : lista){
-			if(board.getSocket().equals(micro.getSocket()))
-				devolver.add(micro);
-		}
-		if(devolver.size() > 0)
-			return devolver;
-		else
-			throw new NonStock("No hay Microprocesadores compatibles con la Motherboard");
-	}
-	public static ArrayList<RAM> ramCompatible(MotherBoard board,ArrayList<RAM> lista)throws NonStock{
-		ArrayList<RAM>devolver = new ArrayList<RAM>();
-		for(RAM ram : lista){
-			if(board.getTipoRAM().equalsIgnoreCase(ram.getTipoRAM()))
-				devolver.add(ram);
-		}
-		if(devolver.size() > 0)
-			return devolver;
-		else
-			throw new NonStock("No hay memorias RAM compatibles con la Motherboard");
-	}
-	public static ArrayList<Disco> discoCompatible(MotherBoard board,ArrayList<Disco> lista)throws NonStock{
-		ArrayList<Disco>devolver = new ArrayList<Disco>();
-		boolean control = false;
-		for(Disco disco : lista){
-			control = false;
-			for(int i = 0; i < board.getConexiones().size() && !control;i++)
-				if(board.getConexiones(i).equalsIgnoreCase(disco.getConexion())){
-					devolver.add(disco);
-					control = true;
-				}
-		}
-		if(devolver.size() > 0)
-			return devolver;
-		else
-			throw new NonStock("No hay Discos Duros compatibles con la Motherboard");
-	}
+
 }

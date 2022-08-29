@@ -220,6 +220,7 @@ public class ComprarComp extends JPanel implements ActionListener{
 					}
 				}
 				limpiarTabla();
+				comboBox.setSelectedIndex(0);
 				llenarTabla(Company.getEmpresa().getTienda());
 				Recibo recibo = new Recibo(carrito);
 				recibo.setVisible(true);
