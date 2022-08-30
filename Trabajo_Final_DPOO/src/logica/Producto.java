@@ -1,7 +1,7 @@
 package logica;
 import excepciones.NoPriceException;
 
-public abstract class Producto {
+public abstract class Producto implements Comparable<Producto>{
 	private String marca;
 	private String modelo;
 	private double precio;
@@ -34,5 +34,14 @@ public abstract class Producto {
 	public String getMarca(){return marca;}
 	public String getModelo(){return modelo;}
 	public double getPrecio(){return precio;}
-
+	
+	public int compareTo (Producto p){
+		if(p.getPrecio() > precio){
+			return -1;
+		}else if(p.getPrecio() > precio){
+			return 0;
+		}else{
+			return 1;
+		}
+	}
 }

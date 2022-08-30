@@ -22,6 +22,8 @@ import excepciones.NonStock;
 
 import java.awt.SystemColor;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import logica.Company;
 import logica.Producto;
@@ -80,10 +82,8 @@ public class ComprarComp extends JPanel implements ActionListener{
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if(comboBox.getSelectedItem() == "Precio"){
-					limpiarTabla ();
-				}else if(comboBox.getSelectedItem() == "Motherboard"){
-					limpiarTabla ();
+				if(comboBox.getSelectedItem() == "Motherboard"){
+					limpiarTabla (); 
 					try {
 						llenarTablaProd(Company.getEmpresa().filtrarPorComponente("Motherboard"));
 					} catch (NonStock ex) {
@@ -116,7 +116,7 @@ public class ComprarComp extends JPanel implements ActionListener{
 				}
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Precio", "Motherboard", "Microprocesador", "Disco", "RAM"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Motherboard", "Microprocesador", "Disco", "RAM"}));
 		comboBox.setBounds(408, 62, 271, 34);
 		add(comboBox);
 		
@@ -167,13 +167,13 @@ public class ComprarComp extends JPanel implements ActionListener{
 	}
 
 	private void llenarTabla(ArrayList<Tienda> tiendas) {
-		
+		model.setRowCount(0);
 		for(Tienda tienda : tiendas){
 			llenarTablaProd(tienda.getProducto());
 			}		
 	}
 	private void llenarTablaProd(ArrayList<Producto> productos){
-		model.setRowCount(0);
+		
 		for(Producto producto : productos){
 			Object[] fila = new Object[4];
 			fila[0] = producto.getClass().getSimpleName();
@@ -204,7 +204,7 @@ public class ComprarComp extends JPanel implements ActionListener{
 				utiles.Validador.errorPanel("No ha seleccionado un elemento de la tabla");
 		}else if(btnVerCarrito == e.getSource()){
 			if(carrito.size() != 0){
-				Carrito mostrar = new Carrito(carrito);
+				Carrito mostrar = new Carrito(carrito,lblPrecioSalida);
 				mostrar.setVisible(true);
 			}else
 				utiles.Validador.errorPanel("No ha añadido ningun elemento al carrito");
@@ -229,18 +229,9 @@ public class ComprarComp extends JPanel implements ActionListener{
 			else 
 				utiles.Validador.errorPanel("No ha seleccionado elementos para comprar");
 		}
-		actualizarPrecio(carrito);
+		utiles.Validador.actualizarPrecio(carrito,lblPrecioSalida);
 	}
-	public void actualizarPrecio(ArrayList<Producto>carrito){
-		lblPrecioSalida.setText("");
-		if(carrito.size() > 0){
-			double total=0;
-			for(Producto producto : carrito){
-				total += producto.getPrecio();
-				lblPrecioSalida.setText(String.valueOf(total));
-			}
-		}
-	}
+	
 	private void limpiarCarrito(){
 			carrito.clear();;
 	}

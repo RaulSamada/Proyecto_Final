@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -34,6 +35,7 @@ public class Carrito extends JDialog implements ActionListener{
 	private JButton btnCancelar;
 	private JButton btnQuitar;
 	private ArrayList<Producto>lista;
+	private JLabel nuevo;
 
 	/**
 	 * Launch the application.
@@ -51,7 +53,7 @@ public class Carrito extends JDialog implements ActionListener{
 	
 	 * Create the dialog.
 	 */
-	public Carrito(ArrayList<Producto> compra){
+	public Carrito(ArrayList<Producto> compra,JLabel entrada){
 		setType(Type.UTILITY);
 		setTitle("CARRITO");
 		setBounds(100, 100, 450, 315);
@@ -63,18 +65,19 @@ public class Carrito extends JDialog implements ActionListener{
 		
 		lista = new ArrayList<Producto>();
 		
-		inicializarComponentes(compra);
+		inicializarComponentes(compra,entrada);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
 	}
-	private void inicializarComponentes(ArrayList<Producto> compra){
+	private void inicializarComponentes(ArrayList<Producto> compra, JLabel entrada){
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 414, 203);
 		contentPanel.add(scrollPane);
 		
 		lista = compra;
+		nuevo = entrada;
 		
 		table = new JTable();
 		model = new DefaultTableModel();
@@ -103,6 +106,7 @@ public class Carrito extends JDialog implements ActionListener{
 		contentPanel.add(btnQuitar);
 		
 		compra = lista;
+		entrada = nuevo;
 	}
 	
 	private void llenarTabla(ArrayList<Producto> compra){
@@ -121,6 +125,7 @@ public class Carrito extends JDialog implements ActionListener{
 	}
 	public void actionPerformed(ActionEvent e) {
 		if(btnCancelar == e.getSource()){
+			utiles.Validador.actualizarPrecio(lista, nuevo);
 			this.dispose();
 		}else if(btnQuitar == e.getSource()){
 				int seleccion = table.getSelectedRow();			
@@ -128,8 +133,10 @@ public class Carrito extends JDialog implements ActionListener{
 					lista.remove(seleccion);
 					limpiarTabla();
 					llenarTabla(lista);
-				}
+
+			}
 		}
 	}
+	
 	
 }

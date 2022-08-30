@@ -6,6 +6,7 @@ import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -72,4 +73,17 @@ import logica.RAM;
 		}
 		return t;
 	}
+	
+	public static void actualizarPrecio(ArrayList<Producto> carrito,JLabel lblPrecioSalida) {
+		lblPrecioSalida.setText("");
+		if(carrito.size() > 0){
+			double total=0;
+			for(Producto producto : carrito){
+				total += producto.getPrecio();
+				lblPrecioSalida.setText(String.valueOf(total));
+			}
+		}
+		
+	}
+
 }

@@ -21,7 +21,7 @@ public class Generador {
 		
 		Trabajador	 t1 = new Trabajador("Daniel", "Lopez", "Leyva", "79050251348", "15302", "secundario", 239, "cajero");
 		Trabajador	 t2 = new Trabajador("Juan", "Lopez", "Leyva", "83021251348", "15315", "secundario", 239, "almacenero");
-		Gerente	 t3 = new Gerente("Federico", "Lopez", "Leyva", "83021251348", "15312", "secundario", 239, "gerente",new Date(118,05,03));
+		Gerente	 	 t3 = new Gerente("Federico", "Lopez", "Leyva", "83021251348", "15312", "secundario", 239, "gerente",new Date(118,05,03));
 				
 		///////////////Contratando personal///////////////////
 		ArrayList<Trabajador>plantilla =  new ArrayList<Trabajador>();
@@ -102,5 +102,37 @@ public class Generador {
 		Company.getEmpresa().addTienda(tienda1);
 		
 		
+////////////////Creando presonal//////////////////////
+		
+Trabajador	 ta1 = new Trabajador("Ernesto", "Suarez", "Rodriguez", "79050252748", "22302", "secundario", 300, "cajero");
+Trabajador	 ta2 = new Trabajador("Juan", "Gutierrez", "Leyva", "92051251348", "15315", "secundario", 400, "almacenero");
+Gerente	 	 ta3 = new Gerente("Fatima", "Lopez", "Cabrera", "80091556348", "15312", "bachiller", 239, "gerente",new Date(110,11,03));
+
+///////////////Contratando personal///////////////////
+ArrayList<Trabajador>plantillaM =  new ArrayList<Trabajador>();
+plantillaM.add(ta1);
+plantillaM.add(ta2);
+plantillaM.add(ta3);
+
+///////////////Generando Stock///////////////////
+Producto pa1 = new Disco("Seagate", "hyper-1", 30, 500, c1);
+Producto pa2 = new Disco("Seagate", "hyper-2", 50, 1500, c3);
+Producto pa3 = new Disco("Seagate", "rayo", 10, 100, c4);
+Producto pa4 = new Disco("Seagate", "hyper-3", 60, 2000, c3);
+
+ArrayList<Producto> productos2 = new ArrayList<Producto>();
+
+productos2.add(pa1);
+productos2.add(pa2);
+productos2.add(pa3);
+productos2.add(pa4);
+
+///////////////Creando Tienda///////////////////
+Tienda tienda2 = new Tienda("Mariposa", "10065", "calle 39 #1520", "78330846", ta3);
+tienda2.setListaTrab(plantillaM);
+tienda2.setListaProd(productos2);
+
+///////////////Añadiendo Tienda///////////////////
+Company.getEmpresa().addTienda(tienda2);
 	}
 }

@@ -134,6 +134,7 @@ public class ArmarPC extends JPanel implements ActionListener{
 	private void limpiarTabla (){
 		model.setRowCount(0);
 	}
+	
 	public void actionPerformed(ActionEvent e) {
 		if(btnAnnadir == e.getSource()){
 			seleccionarProducto();
@@ -154,12 +155,15 @@ public class ArmarPC extends JPanel implements ActionListener{
 			}else if(componentes.size()== 3){
 				limpiarTabla();
 				try {
-					llenarTabla(Company.getEmpresa().discoCompatible((MotherBoard) componentes.get(0)));//AQUI NO ESTA RECONOCIENDO EL SIZE DE LAS CONEXIONES
-					btnPagar.setEnabled(true);
+					llenarTabla(Company.getEmpresa().discoCompatible((MotherBoard) componentes.get(0)));
 				} catch (NonStock e1) {
 					utiles.Validador.errorPanel("No tenemos discos duros compatibles");
 				}
 			}
+			if(componentes.size()> 3)
+				btnPagar.setEnabled(true);
+			else
+				btnPagar.setEnabled(false);
 		}else if(btnReset == e.getSource()){
 			try {
 				llenarTabla(Company.getEmpresa().filtrarPorComponente("motherboard"));
@@ -181,15 +185,26 @@ public class ArmarPC extends JPanel implements ActionListener{
 			}
 			try {
 				computadora.setDisco((Disco) componentes.get(3));
+				Recibo recibo = new Recibo(componentes);
+				recibo.setVisible(true);
+				btnPagar.setEnabled(false);
+				for(Producto producto : componentes){
+					for(Tienda tienda : Company.getEmpresa().getTienda()){
+						for(int i = 0; i < tienda.getProducto().size(); i++){
+							if(producto == tienda.getProducto().get(i)){
+								tienda.getProducto().remove(i);
+							}
+						}
+					}
+				}
+				componentes.clear();
+				btnReset.doClick();
 			} catch (Exception e1) {
 				utiles.Validador.errorPanel(e1.getMessage());
 			}
-			Recibo recibo = new Recibo(componentes);
-			recibo.setVisible(true);
-			btnPagar.setEnabled(false);
-			btnReset.doClick();
+			
 		}
-		
+		utiles.Validador.actualizarPrecio(componentes, lblSalidaPrecio);
 	}
 	private void seleccionarProducto(){
 		int seleccion = table.getSelectedRow();			
@@ -204,5 +219,6 @@ public class ArmarPC extends JPanel implements ActionListener{
 				utiles.Validador.errorPanel("El elemento ya ha sido añadido al carrito");
 		}
 	}
+	
 }
 	

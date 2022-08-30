@@ -13,12 +13,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class Gestion extends JPanel implements ActionListener{
 	
 	private JPanel panelAbastecer;
 	private JLabel lblAbastecer;
 	private JButton btnAddComp;
+	private JLabel lblfoto;
+	private JLabel label;
 	
 
 	/**
@@ -54,6 +57,16 @@ public class Gestion extends JPanel implements ActionListener{
 		btnAddComp.setBounds(421, 41, 143, 51);
 		btnAddComp.addActionListener(this);
 		panelAbastecer.add(btnAddComp);
+		
+		lblfoto = new JLabel("");
+		lblfoto.setIcon(new ImageIcon("C:\\Users\\SAMADA\\Downloads\\089344c2b619e0a000679bc13f298f7d72762d26c6bca790f73ec72714c5f714eef4eaafcdbaae755708df602712e76e1f98c5d56bc370b3bae2b601865c5717.png"));
+		lblfoto.setBounds(10, 11, 669, 167);
+		add(lblfoto);
+		
+		label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\SAMADA\\Downloads\\diagrama-de-componentes-de-un-ordenador.jpg"));
+		label.setBounds(93, 330, 522, 160);
+		add(label);
 		
 	}
 

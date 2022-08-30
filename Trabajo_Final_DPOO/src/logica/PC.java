@@ -25,7 +25,9 @@ public class PC {
 		setDisco(almacenamiento);
 	}
 	
-	public PC() {}
+	public PC() {
+		this.almacenamiento = new ArrayList<Disco>();
+	}
 	public void setPlaca(MotherBoard placa) throws NullPointerException{
 		if(placa != null)
 			this.placa = placa;
