@@ -172,6 +172,8 @@ public class AddBoard extends JPanel implements ActionListener{
 				try {
 					MotherBoard producto = new MotherBoard(marca, modelo, precio, socket, ram, conexion);
 					Company.getEmpresa().getTienda(tienda).addProducto(producto);
+					utiles.Validador.successPanel("Producto añadido correctamente");
+					limpiarEdit();
 				} catch (Exception e1) {
 					utiles.Validador.errorPanel(e1.getMessage());
 				}
@@ -180,6 +182,11 @@ public class AddBoard extends JPanel implements ActionListener{
 				utiles.Validador.errorPanel("Faltan campos por llenar");
 		}
 		
+	}
+	private void limpiarEdit(){
+		for(JTextField txt : textos){
+			txt.setText("");
+		}
 	}
 
 }

@@ -18,29 +18,28 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import logica.Company;
-import logica.Micro;
-import logica.MotherBoard;
+import logica.Disco;
+import logica.RAM;
 
-public class AddMicro extends JPanel implements ActionListener {
+public class AddDisco extends JPanel implements ActionListener {
 	private JTextField textFieldMarca;
 	private JTextField textFieldModelo;
-	private JTextField textFieldSocket;
+	private JTextField textFieldConexion;
+	private JTextField textFieldCapacidad;
+	private JTextField textFieldPrecio;
 	private JTextField textFieldNombreTienda;
-	private JTextField textFieldVelocidad;
 	private JButton btnAñadir;
 	private ArrayList<JTextField>textos;
-	private JTextField textFieldPrecio;
 
 	/**
 	 * Create the panel.
 	 */
-	public AddMicro() {
+	public AddDisco() {
 		setLayout(null);
 		
 		inicializarComponentes();
 
 	}
-	
 	private void inicializarComponentes(){
 		
 		textos = new ArrayList<JTextField>();
@@ -67,57 +66,33 @@ public class AddMicro extends JPanel implements ActionListener {
 		textFieldModelo.setBounds(118, 60, 145, 20);
 		add(textFieldModelo);
 		
-		JLabel lblSocket = new JLabel("Socket:");
-		lblSocket.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSocket.setFont(new Font("Roboto Black", Font.PLAIN, 17));
-		lblSocket.setBounds(10, 95, 98, 31);
-		add(lblSocket);
+		JLabel lblConexion = new JLabel("Conexi\u00F3n:");
+		lblConexion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConexion.setFont(new Font("Roboto Black", Font.PLAIN, 17));
+		lblConexion.setBounds(10, 95, 98, 31);
+		add(lblConexion);
 		
-		textFieldSocket = new JTextField();
-		textFieldSocket.setColumns(10);
-		textFieldSocket.setBounds(118, 102, 145, 20);
-		add(textFieldSocket);
+		textFieldConexion = new JTextField();
+		textFieldConexion.setColumns(10);
+		textFieldConexion.setBounds(118, 102, 145, 20);
+		add(textFieldConexion);
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBounds(297, 11, 337, 168);
-		add(panel);
+		JLabel lblCapacidad = new JLabel("Capacidad");
+		lblCapacidad.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCapacidad.setFont(new Font("Roboto Black", Font.PLAIN, 17));
+		lblCapacidad.setBounds(10, 137, 98, 31);
+		add(lblCapacidad);
 		
-		JLabel lblNombreTienda = new JLabel("Introduzca el nombre de la Tienda que recibe:");
-		lblNombreTienda.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNombreTienda.setFont(new Font("Roboto Black", Font.PLAIN, 15));
-		lblNombreTienda.setBounds(10, 11, 317, 44);
-		panel.add(lblNombreTienda);
-		
-		textFieldNombreTienda = new JTextField();
-		textFieldNombreTienda.setColumns(10);
-		textFieldNombreTienda.setBounds(10, 66, 317, 34);
-		panel.add(textFieldNombreTienda);
-		
-		btnAñadir = new JButton("A\u00F1adir");
-		btnAñadir.setForeground(Color.WHITE);
-		btnAñadir.setFont(new Font("Roboto Black", Font.PLAIN, 13));
-		btnAñadir.setBackground(SystemColor.textHighlight);
-		btnAñadir.setBounds(124, 111, 89, 44);
-		btnAñadir.addActionListener(this);
-		panel.add(btnAñadir);
-		
-		JLabel lblVelocidad = new JLabel("Velocidad:");
-		lblVelocidad.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVelocidad.setFont(new Font("Roboto Black", Font.PLAIN, 17));
-		lblVelocidad.setBounds(10, 137, 98, 31);
-		add(lblVelocidad);
-		
-		textFieldVelocidad = new JTextField();
-		textFieldVelocidad.addKeyListener(new KeyAdapter() {
+		textFieldCapacidad = new JTextField();
+		textFieldCapacidad.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				utiles.Validador.soloNumeros(e);
 			}
 		});
-		textFieldVelocidad.setColumns(10);
-		textFieldVelocidad.setBounds(118, 144, 145, 20);
-		add(textFieldVelocidad);
+		textFieldCapacidad.setColumns(10);
+		textFieldCapacidad.setBounds(118, 144, 145, 20);
+		add(textFieldCapacidad);
 		
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setHorizontalAlignment(SwingConstants.CENTER);
@@ -136,27 +111,57 @@ public class AddMicro extends JPanel implements ActionListener {
 		textFieldPrecio.setBounds(118, 186, 145, 20);
 		add(textFieldPrecio);
 		
+		JLabel label = new JLabel("Gb.\r\n");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("Roboto Black", Font.PLAIN, 17));
+		label.setBounds(273, 137, 31, 31);
+		add(label);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(297, 209, 337, 168);
+		add(panel);
+		
+		JLabel label_1 = new JLabel("Introduzca el nombre de la Tienda que recibe:");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setFont(new Font("Roboto Black", Font.PLAIN, 15));
+		label_1.setBounds(10, 11, 317, 44);
+		panel.add(label_1);
+		
+		textFieldNombreTienda = new JTextField();
+		textFieldNombreTienda.setColumns(10);
+		textFieldNombreTienda.setBounds(10, 66, 317, 34);
+		panel.add(textFieldNombreTienda);
+		
+		btnAñadir = new JButton("A\u00F1adir");
+		btnAñadir.setForeground(Color.WHITE);
+		btnAñadir.setFont(new Font("Roboto Black", Font.PLAIN, 13));
+		btnAñadir.setBackground(SystemColor.textHighlight);
+		btnAñadir.setBounds(124, 111, 89, 44);
+		btnAñadir.addActionListener(this);
+		panel.add(btnAñadir);
+		
 		textos.add(textFieldMarca);
 		textos.add(textFieldModelo);
-		textos.add(textFieldSocket);
-		textos.add(textFieldVelocidad);
+		textos.add(textFieldConexion);
+		textos.add(textFieldCapacidad);
 		textos.add(textFieldPrecio);
 		textos.add(textFieldNombreTienda);
+		
 	}
-
 	public void actionPerformed(ActionEvent e) {
 		
 		if(btnAñadir == e.getSource()){
 			if(utiles.Validador.enviar(textos)){
 				String marca = textos.get(0).getText();
 				String modelo = textos.get(1).getText();
-				String socket = textos.get(2).getText();
-				double velocidad = Double.parseDouble(textos.get(3).getText());
+				String conexion = textos.get(2).getText();
+				double capacidad = Double.parseDouble(textos.get(3).getText());
 				double precio = Double.parseDouble(textos.get(4).getText());
 				String tienda = textos.get(5).getText();
 					
 				try {
-					Micro producto = new Micro(marca, modelo, precio, socket, velocidad);
+					Disco producto = new Disco(marca, modelo, precio, capacidad, conexion);
 					Company.getEmpresa().getTienda(tienda).addProducto(producto);
 					utiles.Validador.successPanel("Producto añadido correctamente");
 					limpiarEdit();
@@ -169,11 +174,9 @@ public class AddMicro extends JPanel implements ActionListener {
 		}
 		
 	}
-	
 	private void limpiarEdit(){
 		for(JTextField txt : textos){
 			txt.setText("");
 		}
 	}
-
 }

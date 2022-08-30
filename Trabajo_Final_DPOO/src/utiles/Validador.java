@@ -48,6 +48,9 @@ import logica.RAM;
 	public static void errorPanel (String msg){
 		 JOptionPane.showMessageDialog(null, msg,"ERROR",JOptionPane.ERROR_MESSAGE);
 	}
+	public static void successPanel (String msg){
+		 JOptionPane.showMessageDialog(null, msg);
+	}
 	public static boolean seleccionTabla (int row){
 			return row >= 0? true : false;
 	}

@@ -74,9 +74,11 @@ public class AddComp extends JDialog {
 					AddMicro ventana = new AddMicro();
 					cambiarPanel(ventana);
 				}else if(comboBox.getSelectedItem()=="RAM"){
-					
+					AddRAM ventana = new AddRAM();
+					cambiarPanel(ventana);
 				}else if(comboBox.getSelectedItem()=="Disco"){
-					
+					AddDisco ventana = new AddDisco();
+					cambiarPanel(ventana);
 				}else if(comboBox.getSelectedItem()==""){
 					panel = new JPanel();
 					panel.setBackground(SystemColor.text);
